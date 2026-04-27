@@ -5,7 +5,7 @@
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python)
 ![Flask](https://img.shields.io/badge/Flask-Web%20App-black?style=for-the-badge&logo=flask)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML%20Model-orange?style=for-the-badge&logo=scikit-learn)
-![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
+
 
 ---
 
