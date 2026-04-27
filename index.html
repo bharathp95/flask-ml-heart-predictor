@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Risk Predictor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #50ffc2, #c800ff);
+            padding: 30px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            width: 50%;
+            margin: auto;
+            border-radius: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background: #c800ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #50ffc2;
+            color: black;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Heart Disease Risk Assessment</h1>
+
+    <form action="/predict" method="POST">
+
+        <label>Age:</label>
+        <input type="number" name="age" required>
+
+        <label>Sex (1 = Male, 0 = Female):</label>
+        <input type="number" name="sex" required>
+
+        <label>Chest Pain Type (0–3):</label>
+        <input type="number" name="chest_pain_type" required>
+
+        <label>Resting Blood Pressure:</label>
+        <input type="number" name="resting_bp" required>
+
+        <label>Cholesterol:</label>
+        <input type="number" name="cholesterol" required>
+
+        <label>Maximum Heart Rate:</label>
+        <input type="number" name="max_heart_rate" required>
+
+        <label>ST Depression (Oldpeak):</label>
+        <input type="number" step="any" name="oldpeak" required>
+
+        <button type="submit">Predict Risk</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            <p><strong>Predicted Risk:</strong> {{ result.predicted_class }}</p>
+            <p><strong>Probabilities:</strong></p>
+            <ul>
+                <li>Low Risk: {{ result.predicted_probability['Low Risk'] }}%</li>
+                <li>High Risk: {{ result.predicted_probability['High Risk'] }}%</li>
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+</div>
+</body>
+</html>
